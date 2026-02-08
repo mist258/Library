@@ -11,10 +11,11 @@ django = "^6.0.2"
 python-dotenv = "^1.2.1"
 psycopg = "^3.3.2"
 psycopg2-binary = "^2.9.11"
-djlint = "^1.36.4"
+
 
 [tool.poetry.group.dev.dependencies]
 isort = "^7.0.0"
+djlint = "^1.36.4"
 
 [build-system]
 requires = ["poetry-core"]
