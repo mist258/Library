@@ -1,85 +1,71 @@
 {% extends 'base.html' %}
-
-{% block body%}
-
-<div class="container-fluid px-4" style="background: #f1f8f4; min-height: 100vh; padding: 40px 0;">
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
-    {% for object in object_list %}
-    <div class="col">
-      <div class="card h-100 author-card" style="
-          background: #ffffff;
-          border: none;
-          border-radius: 16px;
-          font-family: 'Inter', 'Segoe UI', sans-serif;
-          overflow: hidden;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          box-shadow: 0 2px 8px rgba(45, 106, 79, 0.1);
-      ">
-        <div class="card-body p-4">
-          <h5 class="card-title mb-3" style="
-              border-bottom: 3px solid #52b788;
-              padding-bottom: 10px;
-          ">
-            <a href="{% url 'authors:author_details' object.pk %}" style="
-                color: #1b4332;
-                font-weight: 600;
-                font-size: 1.3rem;
-                text-decoration: none;
-                transition: color 0.3s ease;
-            " class="author-name-link">{{ object.name }}</a>
-          </h5>
-
-          <p class="card-text mb-2" style="
-              color: #40916c;
-              font-size: 0.95rem;
-          ">📧 {{ object.email }}</p>
-
-          <p class="card-text mb-3" style="
-              color: #495057;
-              font-size: 0.9rem;
-              line-height: 1.6;
-          ">{{ object.bio }}</p>
-
-          <div class="d-flex align-items-center gap-2 mt-3 p-2" style="
-              background: linear-gradient(135deg, #d8f3dc 0%, #b7e4c7 100%);
-              border-radius: 8px;
-          ">
-            <p class="card-text mb-0" style="
-                color: #1b4332;
-                font-weight: 500;
-                font-size: 0.95rem;
-            ">Books quantity:</p>
-            <span class="badge rounded-pill" style="
-                background: #2d6a4f;
-                color: #ffffff;
-                font-size: 0.9rem;
-                padding: 6px 12px;
-            ">{{ object.books_count }}</span>
-          </div>
+{% block body %}
+    <div class="container-fluid px-4"
+         style="background: #f1f8f4;
+                min-height: 100vh;
+                padding: 40px 0">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+            {% for object in object_list %}
+                <div class="col">
+                    <div class="card h-100 author-card"
+                         style="background: #ffffff;
+                                border: none;
+                                border-radius: 16px;
+                                font-family: 'Inter', 'Segoe UI', sans-serif;
+                                overflow: hidden;
+                                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                                box-shadow: 0 2px 8px rgba(45, 106, 79, 0.1)">
+                        <div class="card-body p-4">
+                            <h5 class="card-title mb-3"
+                                style="border-bottom: 3px solid #52b788;
+                                       padding-bottom: 10px">
+                                <a href="{% url 'authors:author_details' object.pk %}"
+                                   style="color: #1b4332;
+                                          font-weight: 600;
+                                          font-size: 1.3rem;
+                                          text-decoration: none;
+                                          transition: color 0.3s ease"
+                                   class="author-name-link">{{ object.name }}</a>
+                            </h5>
+                            <p class="card-text mb-2" style=" color: #40916c; font-size: 0.95rem; ">📧 {{ object.email }}</p>
+                            <p class="card-text mb-3"
+                               style="color: #495057;
+                                      font-size: 0.9rem;
+                                      line-height: 1.6">{{ object.bio }}</p>
+                            <div class="d-flex align-items-center gap-2 mt-3 p-2"
+                                 style="background: linear-gradient(135deg, #d8f3dc 0%, #b7e4c7 100%);
+                                        border-radius: 8px">
+                                <p class="card-text mb-0"
+                                   style="color: #1b4332;
+                                          font-weight: 500;
+                                          font-size: 0.95rem">Books quantity:</p>
+                                <span class="badge rounded-pill"
+                                      style="background: #2d6a4f;
+                                             color: #ffffff;
+                                             font-size: 0.9rem;
+                                             padding: 6px 12px">{{ object.books_count }}</span>
+                            </div>
+                        </div>
+                        <div class="card-footer"
+                             style="background: transparent;
+                                    border-top: 1px solid #d8f3dc;
+                                    padding: 16px">
+                            <a href="{% url 'authors:author_details' object.pk %}"
+                               class="btn w-100"
+                               style="background: #2d6a4f;
+                                      color: #ffffff;
+                                      border: none;
+                                      font-weight: 500;
+                                      border-radius: 8px;
+                                      padding: 10px;
+                                      transition: all 0.3s ease">View Books</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-
-        <div class="card-footer" style="
-            background: transparent;
-            border-top: 1px solid #d8f3dc;
-            padding: 16px;
-        ">
-          <a href="{% url 'authors:author_details' object.pk %}" class="btn w-100" style="
-              background: #2d6a4f;
-              color: #ffffff;
-              border: none;
-              font-weight: 500;
-              border-radius: 8px;
-              padding: 10px;
-              transition: all 0.3s ease;
-          ">View Books</a>
-        </div>
-      </div>
     </div>
-    {% endfor %}
-  </div>
-</div>
-
-<style>
+    <style>
 .author-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 32px rgba(45, 106, 79, 0.2) !important;
@@ -95,6 +81,5 @@
     color: #2d6a4f !important;
     text-decoration: underline !important;
 }
-</style>
-
+    </style>
 {% endblock %}
