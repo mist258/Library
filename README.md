@@ -21,6 +21,8 @@
 
     10) python manage.py createsuperuser(# create superuser to get access to admin page)
 
+    11) python manage.py runserver(# start project)
+
     
 
 
