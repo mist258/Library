@@ -14,7 +14,7 @@ class BookModel(BaseModel):
 
     title = models.CharField(validators=[
         validators.MinLengthValidator(2),
-        validators.MaxLengthValidator(50)
+        validators.MaxLengthValidator(100)
     ])
     description = models.TextField()
     publish_date = models.DateField(validators=[

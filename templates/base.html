@@ -10,11 +10,12 @@
         <script src={% static 'js/bootstrap.min.js' %}></script>
     </head>
     <body>
-        <nav class="navbar mb-4 shadow-sm"
+        <nav class="navbar shadow-sm fixed-top"
              style="background: #ffffff;
                     border-bottom: 3px solid #2d6a4f;
                     font-family: 'Inter', 'Segoe UI', sans-serif;
-                    padding: 12px 0">
+                    padding: 12px 0;
+                    z-index: 1030">
             <div class="container d-flex align-items-center">
                 <div class="d-flex align-items-center gap-4">
                     <a class="navbar-brand"
@@ -33,7 +34,7 @@
                            type="search"
                            name="q"
                            value="{{ request.GET.q }}"
-                           placeholder="Search books..."
+                           placeholder="Search book or author..."
                            aria-label="Search"
                            style="background: #f8f9fa;
                                   border: 2px solid #52b788;
@@ -156,6 +157,11 @@
     border-color: #2d6a4f !important;
     color: #1b4332 !important;
 }
+
+body {
+    padding-top: 70px;
+}
+
             </style>
         {% endif %}
     </body>
