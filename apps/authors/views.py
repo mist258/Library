@@ -14,7 +14,13 @@ class AuthorListView(ListView):
     paginate_by = 12
 
     def get_queryset(self):
-        return AuthorModel.objects.annotate(books_count=Count('books'))
+
+        queryset = AuthorModel.objects.annotate(books_count=Count('books'))
+        q = self.request.GET.get('q')
+
+        if q:
+            queryset = queryset.filter(name__icontains=q)
+        return queryset
 
 
 class AuthorListDetailsView(ListView):
@@ -26,4 +32,5 @@ class AuthorListDetailsView(ListView):
     def get_queryset(self):
         author = get_object_or_404(AuthorModel, pk=self.kwargs['pk'])
         return BookModel.objects.filter(author=author).select_related('author')
+
 
