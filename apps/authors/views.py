@@ -8,6 +8,10 @@ from .models import AuthorModel
 
 
 class AuthorListView(ListView):
+    """
+    Get all authors and number of their books
+    & searching by author's name
+    """
     model = AuthorModel
     template_name = "authors/authors.html"
     context_object_name = "object_list"
@@ -24,6 +28,9 @@ class AuthorListView(ListView):
 
 
 class AuthorListDetailsView(ListView):
+    """
+        Show all books of current author
+    """
     model = AuthorModel
     template_name = "authors/authors_books.html"
     context_object_name = "object_list"

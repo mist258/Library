@@ -5,6 +5,10 @@ from .models import BookModel
 
 
 class BookListView(ListView):
+    """
+        Get all books & searching by author's name, book's title
+        & sorting by publish_date (ASC or DESC)
+    """
     model = BookModel
     template_name = "books/books.html"
     context_object_name = "object_list"
