@@ -28,7 +28,7 @@
 ## If you are using PyCharm, after creating the database you can connect to it by entering the data from the .env file into the appropriate fields.
 <img width="1008" height="860" alt="image" src="https://github.com/user-attachments/assets/10c0c938-a51f-4d41-98be-2f652059534b" />
 
-##RESULT  
+## RESULT  
 <img width="2030" height="1003" alt="image" src="https://github.com/user-attachments/assets/df5de720-72cf-482f-8285-6aa374b95187" />
 <img width="2030" height="1003" alt="image" src="https://github.com/user-attachments/assets/67a93553-afba-453d-b9fa-75632b96883e" />
 <img width="2030" height="1003" alt="image" src="https://github.com/user-attachments/assets/6320161c-f027-4e52-b23e-5631dcf9dbdc" />
