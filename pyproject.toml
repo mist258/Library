@@ -8,11 +8,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.13"
 django = "^6.0.2"
-django-filter = "^25.2"
 python-dotenv = "^1.2.1"
 psycopg = "^3.3.2"
 psycopg2-binary = "^2.9.11"
-
 
 [tool.poetry.group.dev.dependencies]
 isort = "^7.0.0"

@@ -30,7 +30,7 @@
     ">Authors</a>
 
     <form class="d-flex ms-auto">
-      <input class="form-control me-2" type="search" placeholder="Search books..." aria-label="Search" style="
+      <input class="form-control me-2" type="search"  value="{{ request.GET.q }}" name="q" placeholder="Search books..." aria-label="Search" style="
           background: #f8f9fa;
           border: 2px solid #52b788;
           color: #212529;
@@ -138,7 +138,7 @@
         </a>
     </li>
     <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last" style="
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" aria-label="Last" style="
             background: #ffffff;
             border: 2px solid #52b788;
             color: #2d6a4f;

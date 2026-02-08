@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.views.generic import ListView
 
 from .models import BookModel
@@ -10,7 +11,15 @@ class BookListView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return BookModel.objects.select_related('author').all()
+        queryset = BookModel.objects.select_related('author').all()
+        q = self.request.GET.get('q')
 
+        if q:
+            queryset = queryset.filter(
+                Q(title__icontains=q) |
+                Q(author__name__icontains=q)
+            )
+
+        return queryset
 
 
