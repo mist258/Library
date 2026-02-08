@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('author', '0001_initial'),
+        ('authors', '0001_initial'),
     ]
 
     operations = [

@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container-fluid px-4" style="background: #f1f8f4; min-height: 100vh; padding: 40px 0;">
+    <div class="mb-4">
+        <a href="{% url 'authors:author_list' %}" class="btn mb-3" style="
+            background: #2d6a4f;
+            color: #ffffff;
+            border: none;
+            font-weight: 500;
+            border-radius: 8px;
+            padding: 10px 20px;
+        ">&larr; Back to Authors</a>
+    </div>
+
+    <h3 style="color: #1b4332; font-weight: 600; margin-bottom: 20px;">
+        Books
+    </h3>
+
+    <div class="row row-cols-1 row-cols-lg-2 g-4">
+        {% for object in object_list %}
+        <div class="col">
+            <div class="card h-100 shadow-sm" style="
+                background: #ffffff;
+                border: none;
+                border-radius: 16px;
+                font-family: 'Inter', 'Segoe UI', sans-serif;
+                overflow: hidden;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            ">
+                <div class="card-body p-4">
+                    <h4 class="card-title mb-3" style="
+                        color: #1b4332;
+                        border-left: 4px solid #52b788;
+                        padding-left: 16px;
+                        font-weight: 600;
+                        font-size: 1.5rem;
+                    ">{{ object.title }}</h4>
+
+                    <p class="card-text mb-3" style="
+                        color: #40916c;
+                        font-size: 0.95rem;
+                        font-weight: 500;
+                    ">
+                        📅 Published: {{ object.publish_date }}
+                    </p>
+
+                    <p class="card-text mb-4" style="
+                        color: #495057;
+                        line-height: 1.7;
+                        text-align: justify;
+                    ">{{ object.description }}</p>
+                    <p class="card-text mb-4" style="
+                        color: #495057;
+                        line-height: 1.7;
+                        text-align: justify;
+                    ">{{ object.author.name }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert" style="
+                background: #d8f3dc;
+                border: 2px solid #52b788;
+                color: #1b4332;
+                border-radius: 12px;
+                padding: 20px;
+            ">
+                This author has no books yet.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+    <ul class="pagination justify-content-center mt-5 mb-4">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" style="
+                background: #ffffff;
+                border: 2px solid #52b788;
+                color: #2d6a4f;
+                font-family: 'Inter', 'Segoe UI', sans-serif;
+                font-weight: 500;
+                margin: 0 4px;
+                border-radius: 8px;
+                padding: 10px 16px;
+            ">&laquo;</a>
+        </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <li class="page-item active">
+                <a class="page-link" href="?page={{ num }}" style="
+                    background: #2d6a4f;
+                    border: 2px solid #2d6a4f;
+                    color: #ffffff;
+                    font-family: 'Inter', 'Segoe UI', sans-serif;
+                    font-weight: 500;
+                    margin: 0 4px;
+                    border-radius: 8px;
+                    padding: 10px 16px;
+                ">{{ num }}</a>
+            </li>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ num }}" style="
+                    background: #ffffff;
+                    border: 2px solid #52b788;
+                    color: #2d6a4f;
+                    font-family: 'Inter', 'Segoe UI', sans-serif;
+                    font-weight: 500;
+                    margin: 0 4px;
+                    border-radius: 8px;
+                    padding: 10px 16px;
+                ">{{ num }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}" style="
+                background: #ffffff;
+                border: 2px solid #52b788;
+                color: #2d6a4f;
+                font-family: 'Inter', 'Segoe UI', sans-serif;
+                font-weight: 500;
+                margin: 0 4px;
+                border-radius: 8px;
+                padding: 10px 16px;
+            ">&raquo;</a>
+        </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+</div>
+
+<style>
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(45, 106, 79, 0.15) !important;
+}
+
+.page-link:hover {
+    background: #d8f3dc !important;
+    border-color: #2d6a4f !important;
+    color: #1b4332 !important;
+}
+
+.btn:hover {
+    background: #1b4332 !important;
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
+}
+</style>
+{% endblock %}

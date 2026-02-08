@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library application</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <script src={% static 'js/bootstrap.min.js' %}></script>
+</head>
+<body>
+
+<nav class="navbar mb-4 shadow-sm" style="
+    background: #ffffff;
+    border-bottom: 3px solid #2d6a4f;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    padding: 15px 0;
+">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'books:book_list' %}" style="
+        color: #1b4332;
+        font-weight: 600;
+        font-size: 1.4rem;
+        margin-right: 40px;
+    ">Books</a>
+
+    <a class="navbar-brand" href="{% url 'authors:author_list' %}" style="
+        color: #1b4332;
+        font-weight: 600;
+        font-size: 1.4rem;
+    ">Authors</a>
+
+    <form class="d-flex ms-auto">
+      <input class="form-control me-2" type="search" placeholder="Search books..." aria-label="Search" style="
+          background: #f8f9fa;
+          border: 2px solid #52b788;
+          color: #212529;
+          font-family: 'Inter', 'Segoe UI', sans-serif;
+          width: 280px;
+          height: 42px;
+          padding: 8px 16px;
+          border-radius: 8px;
+      ">
+      <button class="btn" type="submit" style="
+          background: #2d6a4f;
+          color: #ffffff;
+          border: none;
+          font-weight: 500;
+          font-family: 'Inter', 'Segoe UI', sans-serif;
+          height: 42px;
+          padding: 8px 24px;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+      ">Search</button>
+    </form>
+  </div>
+</nav>
+
+{% block body%}
+
+
+{% endblock %}
+{% if is_paginated %}
+<ul class="pagination justify-content-center mt-5 mb-4">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <a class="page-link" href="?page=1" aria-label="First" style="
+            background: #ffffff;
+            border: 2px solid #52b788;
+            color: #2d6a4f;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            font-weight: 500;
+            margin: 0 4px;
+            border-radius: 8px;
+            padding: 10px 16px;
+        ">
+            <span aria-hidden="true">&laquo;&laquo;</span>
+        </a>
+    </li>
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous" style="
+            background: #ffffff;
+            border: 2px solid #52b788;
+            color: #2d6a4f;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            font-weight: 500;
+            margin: 0 4px;
+            border-radius: 8px;
+            padding: 10px 16px;
+        ">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+        <li class="page-item active">
+            <a class="page-link" href="?page={{ num }}" style="
+                background: #2d6a4f;
+                border: 2px solid #2d6a4f;
+                color: #ffffff;
+                font-family: 'Inter', 'Segoe UI', sans-serif;
+                font-weight: 500;
+                margin: 0 4px;
+                border-radius: 8px;
+                padding: 10px 16px;
+            ">{{ num }}</a>
+        </li>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ num }}" style="
+                background: #ffffff;
+                border: 2px solid #52b788;
+                color: #2d6a4f;
+                font-family: 'Inter', 'Segoe UI', sans-serif;
+                font-weight: 500;
+                margin: 0 4px;
+                border-radius: 8px;
+                padding: 10px 16px;
+            ">{{ num }}</a>
+        </li>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next" style="
+            background: #ffffff;
+            border: 2px solid #52b788;
+            color: #2d6a4f;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            font-weight: 500;
+            margin: 0 4px;
+            border-radius: 8px;
+            padding: 10px 16px;
+        ">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last" style="
+            background: #ffffff;
+            border: 2px solid #52b788;
+            color: #2d6a4f;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            font-weight: 500;
+            margin: 0 4px;
+            border-radius: 8px;
+            padding: 10px 16px;
+        ">
+            <span aria-hidden="true">&raquo;&raquo;</span>
+        </a>
+    </li>
+    {% endif %}
+</ul>
+
+<style>
+.page-link:hover {
+    background: #d8f3dc !important;
+    border-color: #2d6a4f !important;
+    color: #1b4332 !important;
+}
+</style>
+{% endif %}
+
+</body>
+</html>

@@ -3,7 +3,7 @@ import datetime
 from django.core import validators
 from django.db import models
 
-from apps.author.models import AuthorModel
+from apps.authors.models import AuthorModel
 
 from core.models import BaseModel
 
