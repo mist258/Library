@@ -23,10 +23,8 @@
 
     11) python manage.py runserver(# start project)
 
-    
-
-
 ```
+
 ## If you are using PyCharm, after creating the database you can connect to it by entering the data from the .env file into the appropriate fields.
 <img width="1008" height="860" alt="image" src="https://github.com/user-attachments/assets/10c0c938-a51f-4d41-98be-2f652059534b" />
 
